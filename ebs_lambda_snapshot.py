@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         ec2 = boto3.client('ec2', region_name=reg)
     
         # Get all in-use volumes in all regions  
-        result = ec2.describe_volumes(Filters=[{'Name': 'tag:celltrak_snapshot_auto', 'Values': ['true']}])
+        result = ec2.describe_volumes(Filters=[{'Name': 'tag:ebs_snapshot_auto', 'Values': ['true']}])
         
         for volume in result['Volumes']:
             print ("Backing up %s in %s" % (volume['VolumeId'], volume['AvailabilityZone']))
